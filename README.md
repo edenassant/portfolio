@@ -73,5 +73,3 @@ Ce projet est sous licence MIT. N'hésitez pas à l'utiliser comme base pour vot
 Pour toute question ou suggestion, n'hésitez pas à me contacter via les liens fournis dans le portfolio.
 
 ---
-
-Développé avec ❤️ dans le cadre du BTS SIO
