@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon CV - Portfolio BTS SIO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .cv-container {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .cv-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .header-text h1 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .header-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #555;
+        }
+
+        .contact-info i {
+            color: var(--secondary-color);
+            width: 20px;
+            text-align: center;
+        }
+
+        .cv-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .cv-section h2 {
+            color: var(--secondary-color);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .cv-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .cv-item h3 {
+            color: #333;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .cv-item .meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .cv-item p {
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .skill-category h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .skill {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .language {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .language h4 {
+            display: flex;
+            justify-content: space-between;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .interest {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .download-cv {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .download-cv:hover {
+            background-color: transparent;
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        @media print {
+            body {
+                background: white;
+                font-size: 12px;
+            }
+
+            .cv-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cv-container {
+                margin: 80px 1rem 2rem;
+                padding: 1rem;
+            }
+
+            .profile-image {
+                margin: 0 auto;
+            }
+
+            .header-text {
+                text-align: center;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="index.html#apropos">À Propos</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="cv.html" class="active">Mon CV</a></li>
+            <li><a href="rse.html">RSE</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <div class="cv-container">
+        <!-- En-tête du CV -->
+        <header class="cv-header">
+            <img src="images/ma-photo.jpg" alt="Ma photo de profil" class="profile-image">
+            <div class="header-text">
+                <h1>Assant Eden</h1>
+                <p>Étudiante en BTS SIO option SLAM</p>
+                <p>STAGE DU 05 JANVIER AU 06 FEVRIER 2026</p>
+                
+                <div class="contact-info">
+                    <div><i class="fas fa-phone"></i> 07-68-63-10-83</div>
+                    <div><i class="fas fa-envelope"></i>edenassant@gmail.com</div>
+                    <div><i class="fas fa-map-marker-alt"></i> Limeil-Brevannes, France</div>
+                    <div><i class="fab fa-github"></i>https://github.com/edenassant</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Section Objectif -->
+        <section class="cv-section">
+            <h2>Profil Professionnel</h2>
+            <p>Actuellement en deuxième année de BTS SIO option SLAM (développement). Je suis à la recherche d'un stage dans l'informatique pour acquérir de nouvelles compétences.</p>
+        </section>
+
+        <!-- Section Formation -->
+        <section class="cv-section">
+            <h2>Formation</h2>
+            
+            <div class="cv-item">
+                <h3>BTS Services Informatiques aux Organisations</h3>
+                <div class="meta">
+                    <span>2023 - 2025</span>
+                    <span>Lycée professionnel Ort Daniel Mayer, Montreuil</span>
+                </div>
+                <p>Option SLAM (Solutions Logicielles et Applications Métiers)</p>
+            </div>
+
+            <div class="cv-item">
+                <h3>Baccalauréat</h3>
+                <div class="meta">
+                    <span>2023</span>
+                </div>
+            </div>
+
+            <div class="cv-item">
+                <h3>Brevet des Collèges</h3>
+                <div class="meta">
+                    <span>2019 - 2020</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Expérience Professionnelle -->
+        <section class="cv-section">
+            <h2>Expériences Professionnelles</h2>
+            
+            <div class="cv-item">
+                <h3>Stage de Première Année BTS SIO</h3>
+                <div class="meta">
+                    <span>Mai - Juin 2025 (5 semaines)</span>
+                    <span>Semmaris (Marché de Rungis)</span>
+                </div>
+                <ul>
+                    <li><strong>Description du projet :</strong> Création d'un site pour les péages (migration de PHP 5 vers PHP 8.3)</li>
+                    <li><strong>Rôle et Responsabilité :</strong> Conception du site et connexion à la base de données</li>
+                    <li><strong>Technologies utilisées :</strong> PHP, JavaScript, HTML, CSS</li>
+                    <li><strong>Compétences acquises :</strong> Autonomie, assiduité et patience</li>
+                </ul>
+            </div>
+
+            <div class="cv-item">
+                <h3>Projet IMMOSYNC - Gestion de travaux immobiliers</h3>
+                <div class="meta">
+                    <span>Septembre 2025 - Mars 2026</span>
+                    <span>Projet de groupe - BTS SIO</span>
+                </div>
+                <ul>
+                    <li><strong>Contexte :</strong> Développement d'une solution pour digitaliser la gestion des travaux immobiliers d'une société de syndic</li>
+                    <li><strong>Fonctionnalités clés :</strong> 
+                        <ul style="margin-top: 5px; margin-bottom: 5px;">
+                            <li>Gestion des chantiers et suivi des travaux</li>
+                            <li>Création et comparaison de devis</li>
+                            <li>Gestion documentaire (rapports, photos, diagnostics)</li>
+                            <li>Tableau de bord de suivi</li>
+                        </ul>
+                    </li>
+                    <li><strong>Rôle et Responsabilité :</strong> 
+                        <ul style="margin-top: 5px; margin-bottom: 5px;">
+                            <li>Conception et développement de l'interface utilisateur avec JavaFX et SceneBuilder</li>
+                            <li>Implémentation de la logique métier pour la gestion des chantiers</li>
+                            <li>Conception du schéma de base de données relationnelle</li>
+                            <li>Tests et documentation technique</li>
+                        </ul>
+                    </li>
+                    <li><strong>Technologies :</strong> Java, JavaFX, SceneBuilder, MySQL, Git</li>
+                    <li><strong>Réalisations :</strong> Application desktop complète avec gestion des utilisateurs, des chantiers, des devis et de la documentation associée</li>
+                    <li><strong>Résultats :</strong> Optimisation du processus de gestion des travaux avec une réduction significative du temps de traitement des dossiers</li>
+                </ul>
+            </div>
+
+            <div class="cv-item">
+                <h3>Création d'un site web en SNT</h3>
+                <div class="meta">
+                    <span>2021 - 2022</span>
+                    <span>Projet scolaire</span>
+                </div>
+                <ul>
+                    <li><strong>Description du projet :</strong> Création d'un site de bijoux (montres, bracelets, etc.)</li>
+                    <li><strong>Rôle et Responsabilité :</strong> Conception du design et développement du site</li>
+                    <li><strong>Technologie utilisée :</strong> JSFiddle</li>
+                    <li><strong>Compétences acquises :</strong> Gestion de projet, travail en équipe, communication</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section Compétences -->
+        <section class="cv-section">
+            <h2>Compétences Techniques</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h4>Compétences Informatiques</h4>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Création de site web (HTML, CSS, JS)</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Python & SQL</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>POO Java & PHP</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Suite Office (Word, PowerPoint, etc.)</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Compétences Personnelles</h4>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Autonomie</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Travail en équipe</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Créativité</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Gestion de projet (GESTTRAVAUX)</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Langues -->
+        <section class="cv-section">
+            <h2>Langues</h2>
+            <div class="languages">
+                <div class="language">
+                    <h4>Français <span>Langue maternelle</span></h4>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="language">
+                    <h4>Anglais <span>Niveau B1</span></h4>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <div class="language">
+                    <h4>Espagnol <span>Niveau B2</span></h4>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 70%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Centres d'intérêt -->
+        <section class="cv-section">
+            <h2>Centres d'intérêt</h2>
+            <div class="interests">
+                <span class="interest">Lecture d'articles sur la sécurité informatique</span>
+                <span class="interest">Tir à l'arc (Compagnie de l'Arc de Saint Maur des Fossés)</span>
+                <span class="interest">Danse</span>
+                <span class="interest">Fraudes informatiques (bancaires et mutuelle)</span>
+            </div>
+        </section>
+
+        <!-- Bouton de téléchargement -->
+        <div class="no-print" style="text-align: center; margin-top: 3rem;">
+            <a href="#" class="download-cv" onclick="window.print()">
+                <i class="fas fa-download"></i> Télécharger mon CV (PDF)
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mon Portfolio BTS SIO. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSE - Portfolio BTS SIO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .rse-container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 0 2rem;
+        }
+
+        .rse-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 105, 180, 0.1));
+            border-radius: 15px;
+        }
+
+        .rse-hero h1 {
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .rse-hero p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .rse-section {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .rse-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .rse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .rse-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .rse-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .rse-card-icon {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 2.5rem;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .rse-card:hover .rse-card-icon {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .rse-card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .rse-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .rse-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .rse-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .rse-image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            background: white;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .rse-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 105, 180, 0.15));
+            border-radius: 15px;
+        }
+
+        .rse-cta h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .rse-cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .rse-container {
+                margin-top: 80px;
+                padding: 0 1rem;
+            }
+
+            .rse-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .rse-section {
+                padding: 1.5rem;
+            }
+
+            .rse-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="index.html#apropos">À Propos</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="cv.html">Mon CV</a></li>
+            <li><a href="rse.html" class="active">RSE</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <div class="rse-container">
+        <!-- En-tête RSE -->
+        <section class="rse-hero">
+            <h1>Responsabilité Sociétale des Entreprises</h1>
+            <p>Découvrez mon engagement envers des pratiques durables et éthiques dans le domaine du numérique et au-delà. La RSE est au cœur de mes valeurs professionnelles et personnelles.</p>
+        </section>
+
+        <!-- Section Engagement RSE -->
+        <section class="rse-section">
+            <h2>Mon Engagement RSE</h2>
+            <p>En tant que future professionnelle du numérique, je m'engage à intégrer les principes du développement durable et de la responsabilité sociétale dans toutes mes activités professionnelles. Voici comment je mets en œuvre ces engagements :</p>
+            
+            <div class="rse-grid">
+                <div class="rse-card">
+                    <div class="rse-card-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="rse-card-content">
+                        <h3>Écologie Numérique</h3>
+                        <p>Conception de sites web éco-responsables avec une optimisation des performances pour réduire l'empreinte carbone.</p>
+                    </div>
+                </div>
+
+                <div class="rse-card">
+                    <div class="rse-card-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="rse-card-content">
+                        <h3>Accessibilité</h3>
+                        <p>Développement de solutions numériques accessibles à tous, conformément aux normes WCAG.</p>
+                    </div>
+                </div>
+
+                <div class="rse-card">
+                    <div class="rse-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="rse-card-content">
+                        <h3>Inclusion</h3>
+                        <p>Promotion de la diversité et de l'inclusion dans le secteur du numérique à travers mes projets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Chiffres Clés -->
+        <section class="rse-section">
+            <h2>Mon Impact</h2>
+            <p>Voici quelques chiffres qui illustrent mon engagement en faveur d'un numérique plus responsable :</p>
+            
+            <div class="rse-stats">
+                <div class="stat-card">
+                    <span class="stat-number">90%</span>
+                    <span class="stat-label">de mes projets respectent les principes d'éco-conception</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">de mes sites sont accessibles (WCAG 2.1 AA)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">75%</span>
+                    <span class="stat-label">de réduction de la consommation énergétique sur mes projets</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50h+</span>
+                    <span class="stat-label">de bénévolat dans des associations numériques</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Projets RSE -->
+        <section class="rse-section">
+            <h2>Mes Projets RSE</h2>
+            <p>Découvrez quelques-uns de mes projets qui intègrent une dimension RSE :</p>
+            
+            <div class="rse-grid">
+                <div class="rse-card">
+                    <div class="rse-card-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <div class="rse-card-content">
+                        <h3>Éco-Comparateur</h3>
+                        <p>Développement d'une application web permettant de comparer l'impact environnemental des produits du quotidien.</p>
+                        <p><strong>Technologies :</strong> React, Node.js, API Open Food Facts</p>
+                    </div>
+                </div>
+
+                <div class="rse-card">
+                    <div class="rse-card-icon">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <div class="rse-card-content">
+                        <h3>Accessi'Web</h3>
+                        <p>Création d'une extension navigateur pour auditer et améliorer l'accessibilité des sites web.</p>
+                        <p><strong>Technologies :</strong> JavaScript, WebExtensions, ARIA</p>
+                    </div>
+                </div>
+
+                <div class="rse-card">
+                    <div class="rse-card-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="rse-card-content">
+                        <h3>GreenHost</h3>
+                        <p>Plateforme de mise en relation avec des hébergeurs web éco-responsables.</p>
+                        <p><strong>Technologies :</strong> Vue.js, Express, MongoDB</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Galerie -->
+        <section class="rse-section">
+            <h2>Galerie d'Engagement</h2>
+            <p>Quelques moments forts de mon engagement RSE :</p>
+            
+            <div class="rse-image-gallery">
+                <div class="gallery-item">
+                    <img src="images/rse1.jpg" alt="Participation à un hackathon éco-responsable">
+                    <div class="gallery-caption">Hackathon Éco-Responsable 2024</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/rse2.jpg" alt="Atelier d'initiation au code pour les femmes">
+                    <div class="gallery-caption">Atelier Code au Féminin</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/rse3.jpg" alt="Conférence sur le numérique responsable">
+                    <div class="gallery-caption">Conférence Numérique Responsable</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/rse4.jpg" alt="Collecte de matériel informatique">
+                    <div class="gallery-caption">Collecte solidaire de matériel informatique</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Partenaires -->
+        <section class="rse-section">
+            <h2>Partenariats et Réseaux</h2>
+            <p>Je collabore avec plusieurs acteurs engagés dans une démarche RSE :</p>
+            
+            <div class="rse-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div style="text-align: center; padding: 1.5rem;">
+                    <i class="fas fa-hands-helping" style="font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                    <h3>Association Numérique Responsable</h3>
+                    <p>Membre active depuis 2023</p>
+                </div>
+                <div style="text-align: center; padding: 1.5rem;">
+                    <i class="fas fa-leaf" style="font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                    <h3>Green IT Community</h3>
+                    <p>Contributrice régulière</p>
+                </div>
+                <div style="text-align: center; padding: 1.5rem;">
+                    <i class="fas fa-graduation-cap" style="font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                    <h3>École du Numérique</h3>
+                    <p>Intervenante bénévole</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section CTA -->
+        <section class="rse-cta">
+            <h2>Ensemble, construisons un numérique plus responsable</h2>
+            <p>Vous partagez ces valeurs et souhaitez échanger sur des projets RSE ou des collaborations ? N'hésitez pas à me contacter pour en discuter.</p>
+            <a href="index.html#contact" class="cta-button">Me contacter</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mon Portfolio BTS SIO. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
