@@ -55,21 +55,4 @@ portfolio/
 
 2. Ouvrez le fichier `index.html` dans votre navigateur préféré.
 
-## ✨ Personnalisation
 
-Pour personnaliser ce portfolio avec vos informations :
-
-1. Remplacez les images dans le dossier `images/` par les vôtres
-2. Modifiez le contenu des fichiers HTML avec vos informations personnelles
-3. Ajustez les couleurs dans le fichier `css/style.css` (variables CSS en haut du fichier)
-4. Mettez à jour les liens vers vos réseaux sociaux et profils en ligne
-
-## 📝 Licence
-
-Ce projet est sous licence MIT. N'hésitez pas à l'utiliser comme base pour votre propre portfolio.
-
-## 📬 Contact
-
-Pour toute question ou suggestion, n'hésitez pas à me contacter via les liens fournis dans le portfolio.
-
----
