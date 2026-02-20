@@ -295,6 +295,17 @@ animations.textContent = `
 
 document.head.appendChild(animations);
 
+// Fonction pour télécharger une image
+function downloadImage(imagePath, fileName) {
+    const link = document.createElement('a');
+    link.href = imagePath;
+    link.download = fileName;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 // Gestion du chargement paresseux des images
 document.addEventListener('DOMContentLoaded', function() {
     const lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));

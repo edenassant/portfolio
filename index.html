@@ -17,7 +17,7 @@
             <li><a href="projets.html">Projets</a></li>
             <li><a href="cv.html">Mon CV</a></li>
             <li><a href="rse.html">RSE</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact">Informations</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -35,12 +35,12 @@
         </div>
     </section>
 
-    <!-- Section À Propos -->
+
     <section id="apropos" class="about">
         <h2>À Propos de Moi</h2>
         <div class="about-content">
             <div class="about-image">
-                <!-- Remplacez le src par le chemin de votre photo -->
+
                 <img src="images/ma-photo.jpg" alt="Ma photo de profil">
             </div>
             <div class="about-text">
@@ -60,24 +60,57 @@
 
     <!-- Section Contact -->
     <section id="contact" class="contact">
-        <h2>Contact</h2>
+        <h2>Informations</h2>
+        <div class="synthese-container">
+            <table class="synthese-table">
+                <thead>
+                    <tr>
+                        <th>Éléments</th>
+                        <th>Descriptions</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tableau de synthése </td>
+                        <td>Détails du tableau de synthése</td>
+                        <td><button class="download-btn" onclick="downloadImage('images/ma-photo.jpg', 'photo-profil.jpg')">
+                            <i class="fas fa-download"></i> Télécharger
+                        </button></td>
+                    </tr>
+                    <tr>
+                        <td>CV</td>
+                        <td>CV complet</td>
+                        <td><a href="cv.html" class="view-btn">
+                            <i class="fas fa-eye"></i> Voir</a></td>
+                    </tr>
+                    <tr>
+                        <td>Projets</td>
+                        <td>Réalisation académiques et personnelles</td>
+                        <td><a href="projets.html" class="view-btn">
+                            <i class="fas fa-folder"></i> Voir
+                        </a></td>
+                    </tr>
+                    <tr>
+                        <td>Certifiactions Pix </td>
+                        <td>Résultat 2024 & 2026</td>
+                        <td>
+                            <button class="download-btn" onclick="downloadImage('images/pix20244.png')">
+                            <i class="fas fa-download"></i> Télécharger</button>
+                            <button class="download-btn" onclick="downloadImage('images/pix2026.png')">
+                                <i class="fas fa-download"></i> Télécharger</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="contact-container">
-            <form id="contact-form">
-                <input type="text" placeholder="Nom" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Votre message" required></textarea>
-                <button type="submit" class="cta-button">Envoyer</button>
-            </form>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/edenassant" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                <a href="mailto:votre.email@example.com"><i class="fas fa-envelope"></i> Email</a>
-            </div>
+
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Mon Portfolio BTS SIO. Tous droits réservés.</p>
+        <p>&copy; Assant Eden </p>
     </footer>
 
     <script src="js/script.js"></script>

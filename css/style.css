@@ -185,6 +185,82 @@ nav {
     font-size: 0.9rem;
 }
 
+/* Tableau de synthèse */
+.synthese-container {
+    max-width: 1200px;
+    margin: 0 auto 3rem auto;
+    background-color: var(--light-color);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.synthese-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--light-color);
+}
+
+.synthese-table th,
+.synthese-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.synthese-table th {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.synthese-table tr:hover {
+    background-color: rgba(255, 182, 193, 0.1);
+}
+
+.synthese-table tr:last-child td {
+    border-bottom: none;
+}
+
+.download-btn,
+.view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.download-btn {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+}
+
+.download-btn:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.view-btn {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.view-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 /* Section Contact */
 .contact {
     padding: 6rem 5%;
@@ -310,6 +386,21 @@ footer {
 
     .skills ul {
         grid-template-columns: 1fr;
+    }
+
+    .synthese-table {
+        font-size: 0.9rem;
+    }
+
+    .synthese-table th,
+    .synthese-table td {
+        padding: 0.5rem;
+    }
+
+    .download-btn,
+    .view-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
     }
 }
 
