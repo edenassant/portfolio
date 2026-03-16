@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage 1 - Site de Péage</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background: #f7bcf8;
+        }
+
+        .stage-container{
+            max-width:1000px;
+            margin:120px auto;
+            background: #ffffff;
+            padding:40px;
+            border-radius:10px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .stage-container h1{
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        .stage-container p{
+            text-align:center;
+            margin-bottom:40px;
+        }
+
+
+        /* SLIDER */
+
+        .slider{
+            position:relative;
+            max-width:800px;
+            margin:auto;
+        }
+
+        .slide{
+            display:none;
+        }
+
+        .slide img{
+            width:100%;
+            border-radius:10px;
+        }
+
+        /* boutons */
+
+        .prev, .next{
+            position:absolute;
+            top:50%;
+            transform:translateY(-50%);
+            background:rgba(0,0,0,0.6);
+            color:white;
+            border:none;
+            padding:12px 18px;
+            cursor:pointer;
+            font-size:20px;
+            border-radius:50%;
+        }
+
+        .prev{
+            left:10px;
+        }
+
+        .next{
+            right:10px;
+        }
+
+        .prev:hover, .next:hover{
+            background:black;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="stage-container">
+
+    <h1>Stage 1 - Site de Péage</h1>
+
+    <p>
+        Durant mon stage chez <b>Semmaris (Marché de Rungis)</b>,
+        j'ai participé à la création d'un site permettant de gérer les péages.
+
+    </p>
+
+
+    <!-- SLIDER -->
+
+    <div class="slider">
+
+        <div class="slide">
+            <img src="images/1.jpg.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/2.jpg.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/4.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/5.jpg.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/6.jpg.png">
+        </div>
+
+
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <button class="next" onclick="changeSlide(1)">❯</button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function changeSlide(n){
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides(n){
+
+        let slides = document.getElementsByClassName("slide");
+
+        if(n > slides.length){
+            slideIndex = 1
+        }
+
+        if(n < 1){
+            slideIndex = slides.length
+        }
+
+        for(let i = 0; i < slides.length; i++){
+            slides[i].style.display = "none";
+        }
+
+        slides[slideIndex-1].style.display = "block";
+
+    }
+
+</script>
+
+
+</body>
+</html>
