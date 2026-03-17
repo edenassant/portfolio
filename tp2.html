@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouvelles balises HTML 5</title>
+    <script type="text/javascript">
+        function draw()
+        {
+            var canvas = document.getElementById('mon_canvas');
+            var context = canvas.getContext('2d');
+            context.beginPath();
+            context.rect(10,10,220,140);
+            context.fillStyle = 'pink';
+            context.fill();
+            context.lineWidth = 5;
+            context.strokeStyle = 'purple';
+            context.stroke();
+            context.closePath();
+            canvas = document.getElementById("mon_canvas1");
+            context = canvas.getContext('2d');
+            context.translate(75,75);
+            for (i=1;i<6;i++)
+            {
+                context.save();
+                context.fillStyle = 'rgb(255,'+ Math.abs(306-51*i)+ ',0)';
+                for (j=0; j<i*6; j++)
+                {
+                    context.rotate(Math.PI*2/(i*6));
+                    context.beginPath();
+                    context.arc(0,i*12.5,5,0,Math.PI*2,true);
+                    context.fill();
+
+                }
+                context.restore();
+            }
+        }
+
+    </script>
+
+    </head>
+    <body onload="draw()">
+        <h3>La balise header</h3>
+        <header>
+            <div style="background-color : rgb(248, 7, 236);"> <br> 
+            <h3>TP2 - HTML suite </h3> <br>
+            </div>
+        </header>
+        <h3>La balise nav</h3>
+        <nav>
+            <p> <a href=""style"...">Acceuil</a>
+            <a href="">Nos produits</a>
+            <a href="">Nos promotions</a>
+            </p>
+        </nav>
+        <h3>La balise mark</h3>
+        <p>Ceci est un <mark>paragraphe</mark> qui met en surbrillance tous les mots <mark> paragraphe</mark> dans un <mark> paragraphe</mark></p>
+        <h3>La balise details + summary</h3>
+        <details>
+            <summary>
+                Liste des clubs
+            </summary>
+            <ul>
+                <li>PSG</li>
+                <li>OL</li>
+                <li>OM</li>
+            </ul>
+        </details>
+        <br>
+        <h3>La balise figure (une image)</h3>
+        <figure>
+            <img src="images/Eau.jpg" width="150" height="100"></img>
+            <figcaption>UNE GOUTTE D'EAU</figcaption>
+        </figure>
+        <h3>La balise audio</h3>
+        <audio src="medias/JohnDunbarTheme.mp3" controls="controls"></audio> 
+       <h3>La balise vidéo</h3>    
+       <video src="medias/mouvement.mp4" controls= "controls"></video>
+       <h3>La balise canvas</h3>
+       <canvas id="mon_canvas" width="250" height="200" ></canvas>
+       <canvas id="mon_canvas1" width="250" height="200" ></canvas>
+       <h3>La balise meter</h3>
+       Votre score est de <meter low="80" high="931" max="50" value="20">4 de 10</meter>
+       <h3>La balise progress</h3>
+       Téléchargement en cours <progress  value="60" max="100">7 de 10</progress>
+       <h3>La balise footer</h3>
+       <footer><p>© Copyright Développement WEB!!!</p></footer>
+    </body>
+</html>
