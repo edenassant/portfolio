@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet GESTTRAVAUX</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background: rgba(102, 150, 95, 0.84);
+        }
+
+        .stage-container{
+            max-width:1000px;
+            margin:120px auto;
+            background: #fabbea;
+            padding:40px;
+            border-radius:10px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .stage-container h1{
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        .stage-container p{
+            text-align:center;
+            margin-bottom:40px;
+        }
+
+        .slider{
+            position:relative;
+            max-width:800px;
+            margin:auto;
+        }
+
+        .slide{
+            display:none;
+        }
+
+        .slide img{
+            width:100%;
+            border-radius:10px;
+        }
+
+        .prev, .next{
+            position:absolute;
+            top:50%;
+            transform:translateY(-50%);
+            background:rgba(0,0,0,0.6);
+            color:white;
+            border:none;
+            padding:12px 18px;
+            cursor:pointer;
+            font-size:20px;
+            border-radius:50%;
+        }
+
+        .prev{
+            left:10px;
+        }
+
+        .next{
+            right:10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="stage-container">
+
+    <h1>Projet GESTTRAVAUX</h1>
+
+    <p>
+        GESTTRAVAUX est une application développée en groupe dans le cadre du BTS SIO.
+        Elle permet de gérer les travaux immobiliers d'une agence : gestion des chantiers, des devis, des entrepreneurs et du suivi des projets.
+        J’ai participé au développement de l’interface et à la logique métier de l’application.
+    </p>
+
+    <div class="slider">
+
+        <div class="slide">
+            <img src="images/gestr1.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gestr2.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gestr3.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gestr4.png">
+        </div>
+        <div class="slide">
+            <img src="images/gestr5.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gestr6.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gestr7.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gestr8.png">
+        </div>
+        <div class="slide">
+            <img src="images/gest9r.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gest10r.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gest11r.png">
+        </div>
+
+
+        <div class="slide">
+            <img src="images/gest13r.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gest14r.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gest15r.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gest16r.png">
+        </div>
+        <div class="slide">
+            <img src="images/gest17r.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gest18r.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gest19r.png">
+        </div>
+
+        <div class="slide">
+            <img src="images/gest20r.png">
+        </div>
+        <div class="slide">
+            <img src="images/gest21r.png">
+        </div>
+        <div class="slide">
+            <img src="images/gest22r.png">
+        </div>
+
+
+
+
+
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <button class="next" onclick="changeSlide(1)">❯</button>
+
+    </div>
+
+</div>
+
+<script>
+
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function changeSlide(n){
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides(n){
+
+        let slides = document.getElementsByClassName("slide");
+
+        if(n > slides.length){slideIndex = 1}
+        if(n < 1){slideIndex = slides.length}
+
+        for(let i=0;i<slides.length;i++){
+            slides[i].style.display="none";
+        }
+
+        slides[slideIndex-1].style.display="block";
+
+    }
+
+</script>
+
+</body>
+</html>
