@@ -681,46 +681,33 @@
 
       <div class="card-stack reveal">
         <div class="proj-card active" data-proj="0">
-          <img src="images/projet1-3.jpg" alt="Site de Péage"
-               onerror="this.style.background='rgba(255,105,180,.15)';this.style.height='80px';this.removeAttribute('src')">
-          <h3>Site de Péage</h3>
-          <p>Marché de Rungis — SEMMARIS</p>
-        </div>
-        <div class="proj-card" data-proj="1">
           <img src="images/gestravaux.jpg" alt="GestTravaux Java"
                onerror="this.style.background='rgba(255,105,180,.15)';this.style.height='80px';this.removeAttribute('src')">
           <h3>GestTravaux Java</h3>
-          <p>Application IMMOSYNC</p>
+          <p>Application IMMOSYNC — Projet de groupe</p>
         </div>
-        <div class="proj-card" data-proj="2">
+        <div class="proj-card" data-proj="1">
           <img src="images/gestravaux.jpg" alt="GestTravaux Web"
                onerror="this.style.background='rgba(255,105,180,.15)';this.style.height='80px';this.removeAttribute('src')">
           <h3>GestTravaux Web</h3>
           <p>Application IMMOSYNC — PHP/Symfony</p>
         </div>
-        <div class="proj-card" data-proj="3">
-          <img src="images/nsa.jpg.png" alt="NSA Devis"
-               onerror="this.style.background='rgba(255,105,180,.15)';this.style.height='80px';this.removeAttribute('src')">
-          <h3>Gestion de Devis NSA</h3>
-          <p>Site entreprise NSA — Stage 2026</p>
-        </div>
       </div>
 
       <div class="proj-detail visible" id="proj-detail">
-        <div class="proj-type" id="proj-type">Application Web</div>
-        <h2 id="proj-title">Site de Péage</h2>
-        <p id="proj-desc">Création d'un site de péage pour le marché de Rungis (SEMMARIS). Gestion des entrées/sorties, statistiques et interface d'administration.</p>
+        <div class="proj-type" id="proj-type">Application Desktop · Projet de groupe</div>
+        <h2 id="proj-title">GestTravaux Java</h2>
+        <p id="proj-desc">Développement d'une application Java pour l'agence IMMOSYNC. Gestion des travaux et des clients via une interface graphique multi-profils.</p>
         <div class="proj-tags" id="proj-tags">
+          <span class="proj-tag">Java</span>
+          <span class="proj-tag">API</span>
           <span class="proj-tag">HTML/CSS</span>
-          <span class="proj-tag">JavaScript</span>
-          <span class="proj-tag">PHP</span>
-          <span class="proj-tag">MySQL</span>
         </div>
         <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
-          <a id="proj-link" href="stage1.html" class="btn-primary" style="font-size:.83rem;padding:.55rem 1.1rem;">
+          <a id="proj-link" href="immosync.html" class="btn-primary" style="font-size:.83rem;padding:.55rem 1.1rem;">
             <i class="fas fa-external-link-alt"></i> Voir le projet
           </a>
-          <a id="proj-github" href="https://github.com/edenassant/ActivePeage" target="_blank" class="btn-ghost" style="font-size:.83rem;padding:.55rem 1.1rem;">
+          <a id="proj-github" href="https://github.com/ort-montreuil/BTS-SIO-G3-2026-GESTTRAVAUX-Java" target="_blank" class="btn-ghost" style="font-size:.83rem;padding:.55rem 1.1rem;">
             <i class="fab fa-github"></i> GitHub
           </a>
         </div>
@@ -800,6 +787,39 @@
           <span class="exp-tag">HTML/CSS</span>
         </div>
         <div class="exp-arrow">Voir le détail <i class="fas fa-arrow-right"></i></div>
+      </a>
+      <a href="stage1.html" class="exp-card reveal">
+        <div class="exp-top">
+          <div class="exp-logo" style="font-size:1.1rem;background:rgba(255,105,180,.1);">🚦</div>
+          <div class="exp-info">
+            <h3>Site de Péage</h3>
+            <p>Projet — SEMMARIS, Rungis</p>
+          </div>
+        </div>
+        <p class="exp-desc">Création d'un site de péage pour le marché de Rungis : gestion des entrées/sorties des véhicules et interface d'administration.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">HTML/CSS</span>
+          <span class="exp-tag">JavaScript</span>
+          <span class="exp-tag">PHP</span>
+          <span class="exp-tag">MySQL</span>
+        </div>
+        <div class="exp-arrow">Voir le projet <i class="fas fa-arrow-right"></i></div>
+      </a>
+      <a href="stage2.html" class="exp-card reveal">
+        <div class="exp-top">
+          <div class="exp-logo" style="font-size:1.1rem;background:rgba(255,105,180,.1);">📋</div>
+          <div class="exp-info">
+            <h3>Gestion de Devis NSA</h3>
+            <p>Projet — NSA, Ascenseurs</p>
+          </div>
+        </div>
+        <p class="exp-desc">Site de gestion de devis pour l'entreprise NSA : génération de devis, gestion des clients et ajout de photos.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">PHP</span>
+          <span class="exp-tag">HTML/CSS</span>
+          <span class="exp-tag">MySQL</span>
+        </div>
+        <div class="exp-arrow">Voir le projet <i class="fas fa-arrow-right"></i></div>
       </a>
     </div>
   </div>
@@ -1001,36 +1021,20 @@ document.querySelectorAll('.stat-num').forEach(el => counterObs.observe(el));
 /* ===== PROJECTS ===== */
 const projects = [
   {
-    type: 'Application Web',
-    title: 'Site de Péage',
-    desc: "Création d'un site de péage pour le marché de Rungis (SEMMARIS). Gestion des entrées/sorties, statistiques et interface d'administration.",
-    tags: ['HTML/CSS', 'JavaScript', 'PHP', 'MySQL'],
-    link: 'stage1.html',
-    github: 'https://github.com/edenassant/ActivePeage'
-  },
-  {
-    type: 'Application Desktop',
+    type: 'Application Desktop · Projet de groupe',
     title: 'GestTravaux Java',
-    desc: "Développement d'une application Java pour l'agence IMMOSYNC. Gestion des travaux et des clients via une interface graphique.",
+    desc: "Développement d'une application Java pour l'agence IMMOSYNC. Gestion des travaux et des clients via une interface graphique multi-profils (propriétaires, entrepreneurs, gestionnaires).",
     tags: ['Java', 'API', 'HTML/CSS'],
     link: 'immosync.html',
     github: 'https://github.com/ort-montreuil/BTS-SIO-G3-2026-GESTTRAVAUX-Java'
   },
   {
-    type: 'Application Web',
+    type: 'Application Web · Projet de groupe',
     title: 'GestTravaux Web',
-    desc: "Développement web de l'agence IMMOSYNC avec Symfony. Interface de gestion des travaux et clients via un framework PHP moderne.",
+    desc: "Développement web de l'agence IMMOSYNC avec Symfony. Interface de gestion des travaux et clients via un framework PHP moderne, avec espaces dédiés par profil.",
     tags: ['PHP', 'Symfony', 'MySQL', 'HTML/CSS'],
-    link: 'immosyncweb.html',
+    link: 'immosync.html',
     github: 'https://github.com/ort-montreuil/BTS-SIO-G3-2026-GESTTRAVAUX-Web'
-  },
-  {
-    type: 'Application Web',
-    title: 'Gestion de Devis NSA',
-    desc: "Création d'un site permettant de générer et gérer des devis, d'ajouter des clients et des photos pour l'entreprise NSA (Nouvelle Société d'Ascenseurs).",
-    tags: ['PHP', 'HTML', 'CSS'],
-    link: 'stage2.html',
-    github: 'https://github.com/edenassant/NSA.git'
   }
 ];
 
