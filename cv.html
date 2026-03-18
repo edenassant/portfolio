@@ -1,537 +1,504 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon CV - Portfolio BTS SIO</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .cv-container {
-            max-width: 1000px;
-            margin: 100px auto 50px;
-            padding: 2rem;
-            background: white;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon CV — Eden Assant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --accent:  #ff69b4;
+      --accent2: #c94080;
+      --bg:      #fff9fa;
+      --bg2:     #fff0f5;
+      --surface: #ffffff;
+      --text:    #2d1a22;
+      --text2:   #7a4f60;
+      --border:  rgba(255,105,180,.18);
+      --shadow:  0 4px 24px rgba(255,105,180,.10);
+      --radius:  14px;
+      --nav-bg:  rgba(255,249,250,.9);
+    }
+    [data-theme="dark"] {
+      --bg:      #1a0a0f;
+      --bg2:     #22101a;
+      --surface: #2d1520;
+      --text:    #f5e6ef;
+      --text2:   #c4a0b0;
+      --border:  rgba(255,105,180,.18);
+      --shadow:  0 4px 24px rgba(255,105,180,.13);
+      --nav-bg:  rgba(26,10,15,.9);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Inter','Segoe UI',system-ui,sans-serif;
+      background:var(--bg); color:var(--text); line-height:1.6;
+      transition:background .35s,color .35s;
+    }
+    #particles-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-        .cv-header {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid var(--primary-color);
-        }
+    /* NAV */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:.85rem 5%;
+      background:var(--nav-bg); backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo { font-size:1.2rem; font-weight:800; color:var(--accent); text-decoration:none; letter-spacing:-.02em; }
+    .nav-logo .cursor { display:inline-block; width:2px; height:1em; background:var(--accent); margin-left:1px; vertical-align:text-bottom; animation:blink 1s step-end infinite; }
+    .nav-links { display:flex; list-style:none; gap:.15rem; }
+    .nav-links a { color:var(--text2); text-decoration:none; padding:.36rem .8rem; border-radius:8px; font-size:.875rem; transition:all .2s; }
+    .nav-links a:hover, .nav-links a.active { background:rgba(255,105,180,.12); color:var(--accent); }
+    .nav-right { display:flex; align-items:center; gap:.5rem; }
+    .theme-btn {
+      width:36px; height:36px; border-radius:50%;
+      border:1px solid var(--border); background:var(--surface);
+      color:var(--text2); font-size:.95rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; transition:all .2s;
+    }
+    .theme-btn:hover { color:var(--accent); border-color:var(--accent); }
+    .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .burger div { width:24px; height:3px; background:var(--text2); border-radius:3px; transition:.3s; }
 
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary-color);
-        }
+    /* LAYOUT */
+    main { position:relative; z-index:1; padding-top:4.5rem; }
+    .cv-wrap { max-width:900px; margin:2rem auto 4rem; padding:0 5%; }
 
-        .header-text {
-            flex: 1;
-            min-width: 300px;
-        }
+    /* CV HEADER */
+    .cv-header {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius); padding:2rem 2.5rem;
+      display:flex; gap:2rem; align-items:center;
+      box-shadow:var(--shadow); margin-bottom:1.5rem;
+      border-top:3px solid var(--accent);
+    }
+    .cv-photo {
+      width:110px; height:110px; border-radius:50%; object-fit:cover;
+      border:3px solid var(--accent); flex-shrink:0;
+      background:var(--bg2);
+    }
+    .cv-header-info h1 { font-size:1.8rem; font-weight:800; letter-spacing:-.03em; margin-bottom:.25rem; }
+    .cv-header-info h1 span { color:var(--accent); }
+    .cv-header-info .subtitle { color:var(--text2); font-size:.95rem; margin-bottom:1rem; }
+    .cv-contacts { display:flex; flex-wrap:wrap; gap:.6rem 1.5rem; }
+    .cv-contact-item {
+      display:flex; align-items:center; gap:.45rem;
+      font-size:.82rem; color:var(--text2);
+    }
+    .cv-contact-item i { color:var(--accent); width:14px; }
+    .cv-contact-item a { color:var(--text2); text-decoration:none; transition:color .2s; }
+    .cv-contact-item a:hover { color:var(--accent); }
 
-        .header-text h1 {
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
+    /* SECTION */
+    .cv-section {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius); padding:1.75rem 2.5rem;
+      box-shadow:var(--shadow); margin-bottom:1.25rem;
+      transition:box-shadow .25s;
+    }
+    .cv-section:hover { box-shadow:0 8px 28px rgba(255,105,180,.14); }
+    .cv-section h2 {
+      font-size:1rem; font-weight:800; text-transform:uppercase;
+      letter-spacing:.06em; color:var(--accent);
+      display:flex; align-items:center; gap:.6rem;
+      padding-bottom:.75rem; margin-bottom:1.25rem;
+      border-bottom:1px solid var(--border);
+    }
 
-        .header-text p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 1rem;
-        }
+    /* CV ITEM (timeline style) */
+    .cv-item {
+      padding-left:1.25rem;
+      border-left:2px solid var(--accent);
+      margin-bottom:1.5rem; position:relative;
+    }
+    .cv-item::before {
+      content:''; position:absolute; left:-5px; top:6px;
+      width:8px; height:8px; border-radius:50%;
+      background:var(--accent);
+    }
+    .cv-item:last-child { margin-bottom:0; }
+    .cv-item h3 { font-size:.97rem; font-weight:700; margin-bottom:.3rem; }
+    .cv-item .meta {
+      display:flex; justify-content:space-between; flex-wrap:wrap; gap:.25rem;
+      font-size:.78rem; color:var(--text2); font-style:italic; margin-bottom:.6rem;
+    }
+    .cv-item .meta .place {
+      display:flex; align-items:center; gap:.35rem;
+    }
+    .cv-item .meta .place i { color:var(--accent); font-size:.7rem; }
+    .cv-item ul { padding-left:1.1rem; display:flex; flex-direction:column; gap:.3rem; }
+    .cv-item li { font-size:.86rem; color:var(--text2); line-height:1.6; }
+    .cv-item li strong { color:var(--text); }
+    .cv-item p { font-size:.88rem; color:var(--text2); line-height:1.7; }
 
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
+    /* SKILLS BARS */
+    .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem 2.5rem; }
+    .skill-group h4 { font-size:.82rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.05em; margin-bottom:.9rem; }
+    .skill { margin-bottom:.9rem; }
+    .skill-name { display:flex; justify-content:space-between; font-size:.83rem; margin-bottom:.3rem; }
+    .skill-name span:last-child { color:var(--accent); font-weight:600; }
+    .skill-bar { height:6px; background:var(--border); border-radius:999px; overflow:hidden; }
+    .skill-level {
+      height:100%; border-radius:999px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      width:0; transition:width 1.2s ease;
+    }
 
-        .contact-info div {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #555;
-        }
+    /* LANGUAGES */
+    .lang-grid { display:flex; flex-wrap:wrap; gap:1rem; }
+    .lang-item {
+      flex:1; min-width:160px;
+      background:var(--bg2); border:1px solid var(--border);
+      border-radius:10px; padding:1rem 1.25rem;
+    }
+    .lang-item h4 { font-size:.88rem; font-weight:700; margin-bottom:.2rem; }
+    .lang-item span { font-size:.75rem; color:var(--text2); display:block; margin-bottom:.6rem; }
 
-        .contact-info i {
-            color: var(--secondary-color);
-            width: 20px;
-            text-align: center;
-        }
+    /* INTERESTS */
+    .interests { display:flex; flex-wrap:wrap; gap:.6rem; }
+    .interest {
+      padding:.3rem .9rem;
+      background:rgba(255,105,180,.1); border:1px solid rgba(255,105,180,.28);
+      border-radius:999px; font-size:.8rem; color:var(--accent); font-weight:500;
+    }
 
-        .cv-section {
-            margin-bottom: 2.5rem;
-        }
+    /* PRINT BUTTON */
+    .print-bar {
+      display:flex; justify-content:center; margin-bottom:2rem;
+    }
+    .btn-print {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.7rem 1.75rem;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff; border:none; border-radius:10px;
+      font-size:.9rem; font-weight:600; cursor:pointer;
+      box-shadow:0 4px 15px rgba(255,105,180,.32); transition:all .2s;
+    }
+    .btn-print:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(255,105,180,.42); }
 
-        .cv-section h2 {
-            color: var(--secondary-color);
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
+    /* FOOTER */
+    footer {
+      text-align:center; padding:1.5rem;
+      border-top:1px solid var(--border); color:var(--text2);
+      font-size:.82rem; position:relative; z-index:1;
+    }
 
-        .cv-item {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-            border-left: 3px solid var(--primary-color);
-        }
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .6s ease,transform .6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
 
-        .cv-item h3 {
-            color: #333;
-            margin-bottom: 0.3rem;
-            font-size: 1.2rem;
-        }
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:var(--nav-bg); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); flex-direction:column; padding:1rem; gap:.2rem; }
+      .nav-links.open { display:flex; }
+      .burger { display:flex; }
+      .cv-header { flex-direction:column; align-items:flex-start; }
+      .skills-grid { grid-template-columns:1fr; }
+    }
 
-        .cv-item .meta {
-            display: flex;
-            justify-content: space-between;
-            color: #666;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .cv-item p {
-            color: #444;
-            line-height: 1.6;
-        }
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .skill-category {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .skill-category h4 {
-            color: var(--secondary-color);
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
-        }
-
-        .skill {
-            margin-bottom: 1rem;
-        }
-
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.3rem;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background-color: #f0f0f0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-level {
-            height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 4px;
-        }
-
-        .languages {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .language {
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .language h4 {
-            display: flex;
-            justify-content: space-between;
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .interests {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .interest {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        .download-cv {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .download-cv:hover {
-            background-color: transparent;
-            border-color: var(--secondary-color);
-            color: var(--secondary-color);
-        }
-
-        @media print {
-            body {
-                background: white;
-                font-size: 12px;
-            }
-
-            .cv-container {
-                box-shadow: none;
-                margin: 0;
-                padding: 0;
-            }
-
-            .no-print {
-                display: none;
-            }
-
-            a {
-                text-decoration: none;
-                color: inherit;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .cv-container {
-                margin: 80px 1rem 2rem;
-                padding: 1rem;
-            }
-
-            .profile-image {
-                width: 170px;
-                height: 200px;
-                border-radius: 50%;
-                object-fit: contain;
-            }
-
-            .header-text {
-                text-align: center;
-            }
-
-            .contact-info {
-                justify-content: center;
-            }
-        }
-    </style>
+    @media print {
+      #particles-canvas, nav, .print-bar, footer { display:none !important; }
+      body { background:#fff !important; color:#000 !important; }
+      main { padding-top:0 !important; }
+      .cv-section, .cv-header { box-shadow:none !important; border-color:#eee !important; background:#fff !important; }
+      .cv-section h2, .cv-item h3, .cv-header-info h1 span { color:#c94080 !important; }
+      .skill-level { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Barre de navigation -->
-    <nav>
-        <div class="logo">Mon Portfolio</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="index.html#apropos">À Propos</a></li>
-            <li><a href="tp2.html">TP</a></li>
-            <li><a href="projets.html">Projets</a></li>
-            <li><a href="cv.html" class="active">Mon CV</a></li>
-            <li><a href="rse.html">Stages</a></li>
-            <li><a href="index.html#contact">Informations</a></li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
 
-    <div class="cv-container">
-        <!-- En-tête du CV -->
-        <header class="cv-header">
-            <img src="images/ma-photo.jpg.png" alt="Ma photo de profil" class="profile-image">
-            <div class="header-text">
-                <h1>Assant Eden</h1>
-                <p>Étudiante en BTS SIO option SLAM</p>
+<canvas id="particles-canvas"></canvas>
 
-                <div class="contact-info">
-                    <div><i class="fas fa-phone"></i> 07-68-63-10-83</div>
-                    <div><i class="fas fa-envelope"></i>edenassant@gmail.com</div>
-                    <div><i class="fas fa-map-marker-alt"></i> Limeil-Brevannes, France</div>
-                    <div><i class="fab fa-github"></i>https://github.com/edenassant</div>
-                </div>
-            </div>
-        </header>
+<nav>
+  <a class="nav-logo" href="index.html">Eden_<span class="cursor"></span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="index.html#apropos">À Propos</a></li>
+    <li><a href="index.html#projets">Projets</a></li>
+    <li><a href="index.html#competences">Compétences</a></li>
+    <li><a href="index.html#stages">Stages</a></li>
+    <li><a href="cv.html" class="active">Mon CV</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="theme-btn"><i class="fas fa-moon"></i></button>
+    <div class="burger" id="burger"><div></div><div></div><div></div></div>
+  </div>
+</nav>
 
-        <!-- Section Objectif -->
-        <section class="cv-section">
-            <h2>Profil Professionnel</h2>
-            <p>Actuellement en deuxième année de BTS SIO option SLAM (développement). Je suis à la recherche d'une alternance dans le développement pour acquérir de nouvelles compétences.</p>
-        </section>
+<main>
+  <div class="cv-wrap">
 
-        <!-- Section Formation -->
-        <section class="cv-section">
-            <h2>Formation</h2>
-            
-            <div class="cv-item">
-                <h3>BTS Services Informatiques aux Organisations</h3>
-                <div class="meta">
-                    <span>2024 - 2026</span>
-                    <span>Lycée professionnel Ort Daniel Mayer, Montreuil</span>
-                </div>
-                <p>Option SLAM (Solutions Logicielles et Applications Métiers)</p>
-            </div>
-
-            <div class="cv-item">
-                <h3>Baccalauréat</h3>
-                <div class="meta">
-                    <span>2024</span>
-                </div>
-            </div>
-
-            <div class="cv-item">
-                <h3>Brevet des Collèges</h3>
-                <div class="meta">
-                    <span>2019 - 2020</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section Expérience Professionnelle -->
-        <section class="cv-section">
-            <h2>Expériences Professionnelles</h2>
-            
-            <div class="cv-item">
-                <h3>Stage de Première Année BTS SIO</h3>
-                <div class="meta">
-                    <span>Mai - Juin 2025 (5 semaines)</span>
-                    <span>Semmaris (Marché de Rungis)</span>
-                </div>
-                <ul>
-                    <li><strong>Description du projet :</strong> Création d'un site pour les péages (migration de PHP 5 vers PHP 8.3)</li>
-                    <li><strong>Rôle et Responsabilité :</strong> Conception du site et connexion à la base de données</li>
-                    <li><strong>Technologies utilisées :</strong> PHP, JavaScript, HTML, CSS</li>
-                    <li><strong>Compétences acquises :</strong> Autonomie, assiduité et patience</li>
-                </ul>
-            </div>
-
-            <div class="cv-item">
-                <h3>Stage de Deuxième année  </h3>
-
-                <div class="meta">
-                    <span>05 Janvier 2026-06 Fevrier 2026</span>
-                    <span>NSA</span>
-                </div>
-                <ul>
-                    <li><strong>Description du projet :</strong> Création d’un site permettant de générer et gérer des devis pour l’entreprise NSA, ajouter des clients + dashboard </li>
-                    <li><strong>Rôle et responsabilité :</strong> Conception complète du site, mise en place de la gestion des devis et connexion à la base de données</li>
-                    <li><strong>Technologies utilisées :</strong> PHP, HTML, CSS</li>
-                    <li><strong>Compétences acquises :</strong> Autonomie, organisation, précision et capacité à créer des solutions pratiques pour une entreprise</li>
-                </ul>
-            </div>
-
-
-
-
-
-            <div class="cv-item">
-                <h3>Projet IMMOSYNC - Gestion de travaux immobiliers</h3>
-                <div class="meta">
-                    <span>Septembre 2025 - Mars 2026</span>
-                    <span>Projet de groupe - BTS SIO</span>
-                </div>
-                <ul>
-                    <li><strong>Contexte :</strong> Développement d'une solution pour digitaliser la gestion des travaux immobiliers d'une société de syndic</li>
-                    <li><strong>Fonctionnalités clés :</strong> 
-                        <ul style="margin-top: 5px; margin-bottom: 5px;">
-                            <li>Gestion des chantiers et suivi des travaux</li>
-                            <li>Création et comparaison de devis</li>
-                            <li>Gestion documentaire (rapports, photos, diagnostics)</li>
-                            <li>Tableau de bord de suivi</li>
-                        </ul>
-                    </li>
-                    <li><strong>Rôle et Responsabilité :</strong> 
-                        <ul style="margin-top: 5px; margin-bottom: 5px;">
-                            <li>Conception et développement de l'interface utilisateur avec JavaFX et SceneBuilder</li>
-                            <li>Implémentation de la logique métier pour la gestion des chantiers</li>
-                            <li>Conception du schéma de base de données relationnelle</li>
-                            <li>Tests et documentation technique</li>
-                        </ul>
-                    </li>
-                    <li><strong>Technologies :</strong> Java, JavaFX, SceneBuilder, MySQL, GitHub, Docker,Php</li>
-                    <li><strong>Réalisations :</strong> Application desktop complète avec gestion des utilisateurs, des chantiers, des devis et de la documentation associée</li>
-                    <li><strong>Résultats :</strong> Optimisation du processus de gestion des travaux avec une réduction significative du temps de traitement des dossiers</li>
-                </ul>
-            </div>
-
-            <div class="cv-item">
-                <h3>Création d'un site web en SNT</h3>
-                <div class="meta">
-                    <span>2021 - 2022</span>
-                    <span>Projet scolaire</span>
-                </div>
-                <ul>
-                    <li><strong>Description du projet :</strong> Création d'un site de bijoux (montres, bracelets, etc.)</li>
-                    <li><strong>Rôle et Responsabilité :</strong> Conception du design et développement du site</li>
-                    <li><strong>Technologie utilisée :</strong> JSFiddle</li>
-                    <li><strong>Compétences acquises :</strong> Gestion de projet, travail en équipe, communication</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Section Compétences -->
-        <section class="cv-section">
-            <h2>Compétences Techniques</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h4>Compétences Informatiques</h4>
-                    <div class="skill">
-                        <div class="skill-name">
-                            <span>Création de site web (HTML, CSS, JS)</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 85%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-name">
-                            <span>Python & SQL</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-name">
-                            <span>POO Java & PHP</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 75%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-name">
-                            <span>Suite Office (Word, PowerPoint, etc.)</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 90%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h4>Compétences Personnelles</h4>
-                    <div class="skill">
-                        <div class="skill-name">
-                            <span>Autonomie</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 90%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-name">
-                            <span>Travail en équipe</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 85%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-name">
-                            <span>Créativité</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-name">
-                            <span>Gestion de projet (GESTTRAVAUX)</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section Langues -->
-        <section class="cv-section">
-            <h2>Langues</h2>
-            <div class="languages">
-                <div class="language">
-                    <h4>Français <span>Langue maternelle</span></h4>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 100%;"></div>
-                    </div>
-                </div>
-                <div class="language">
-                    <h4>Anglais <span>Niveau B1</span></h4>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 60%;"></div>
-                    </div>
-                </div>
-                <div class="language">
-                    <h4>Espagnol <span>Niveau B2</span></h4>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 70%;"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section Centres d'intérêt -->
-        <section class="cv-section">
-            <h2>Centres d'intérêt</h2>
-            <div class="interests">
-                <span class="interest">Lecture d'articles sur la sécurité informatique</span>
-                <span class="interest">Tir à l'arc (Compagnie de l'Arc de Saint Maur des Fossés)</span>
-                <span class="interest">Danse</span>
-                <span class="interest">Fraudes informatiques (bancaires et mutuelle)</span>
-            </div>
-        </section>
-
-        <!-- Bouton de téléchargement -->
-        <div class="no-print" style="text-align: center; margin-top: 3rem;">
-            <a href="#" class="download-cv" onclick="window.print()">
-                <i class="fas fa-download"></i> Télécharger mon CV (PDF)
-            </a>
-        </div>
+    <!-- PRINT -->
+    <div class="print-bar reveal">
+      <button class="btn-print" onclick="window.print()">
+        <i class="fas fa-download"></i> Télécharger en PDF
+      </button>
     </div>
 
-    <footer>
-        <p>&copy; Assant Eden</p>
-    </footer>
+    <!-- HEADER -->
+    <div class="cv-header reveal">
+      <img src="images/ma-photo.jpg.png" alt="Eden Assant" class="cv-photo">
+      <div class="cv-header-info">
+        <h1>Assant <span>Eden</span></h1>
+        <p class="subtitle">Étudiante en BTS SIO option SLAM — Promo 2026</p>
+        <div class="cv-contacts">
+          <div class="cv-contact-item"><i class="fas fa-phone"></i> 07-68-63-10-83</div>
+          <div class="cv-contact-item"><i class="fas fa-envelope"></i> <a href="mailto:edenassant@gmail.com">edenassant@gmail.com</a></div>
+          <div class="cv-contact-item"><i class="fas fa-map-marker-alt"></i> Limeil-Brévannes, France</div>
+          <div class="cv-contact-item"><i class="fab fa-github"></i> <a href="https://github.com/edenassant" target="_blank">github.com/edenassant</a></div>
+        </div>
+      </div>
+    </div>
 
-    <script src="js/script.js?v=2"></script>
+    <!-- PROFIL -->
+    <div class="cv-section reveal">
+      <h2><i class="fas fa-user"></i> Profil Professionnel</h2>
+      <p style="font-size:.9rem;color:var(--text2);line-height:1.8;">
+        Actuellement en deuxième année de BTS SIO option SLAM (développement), je suis à la recherche d'une alternance dans le développement pour acquérir de nouvelles compétences. Passionnée par la création d'applications web et la résolution de problèmes techniques.
+      </p>
+    </div>
+
+    <!-- FORMATION -->
+    <div class="cv-section reveal">
+      <h2><i class="fas fa-graduation-cap"></i> Formation</h2>
+      <div class="cv-item">
+        <h3>BTS Services Informatiques aux Organisations</h3>
+        <div class="meta">
+          <span>2024 — 2026</span>
+          <span class="place"><i class="fas fa-map-marker-alt"></i> Lycée ORT Daniel Mayer, Montreuil</span>
+        </div>
+        <p>Option SLAM — Solutions Logicielles et Applications Métiers</p>
+      </div>
+      <div class="cv-item">
+        <h3>Baccalauréat</h3>
+        <div class="meta"><span>2024</span></div>
+      </div>
+      <div class="cv-item">
+        <h3>Brevet des Collèges</h3>
+        <div class="meta"><span>2019 — 2020</span></div>
+      </div>
+    </div>
+
+    <!-- EXPÉRIENCES -->
+    <div class="cv-section reveal">
+      <h2><i class="fas fa-briefcase"></i> Expériences Professionnelles</h2>
+
+      <div class="cv-item">
+        <h3>Stage 1ère année BTS SIO — SEMMARIS</h3>
+        <div class="meta">
+          <span>Mai — Juin 2025 (5 semaines)</span>
+          <span class="place"><i class="fas fa-map-marker-alt"></i> Marché de Rungis</span>
+        </div>
+        <ul>
+          <li><strong>Projet :</strong> Création d'un site de péage (migration PHP 5 → PHP 8.3)</li>
+          <li><strong>Rôle :</strong> Conception du site et connexion à la base de données</li>
+          <li><strong>Technologies :</strong> PHP, JavaScript, HTML, CSS</li>
+          <li><strong>Compétences acquises :</strong> Autonomie, assiduité et patience</li>
+        </ul>
+      </div>
+
+      <div class="cv-item">
+        <h3>Stage 2ème année BTS SIO — NSA</h3>
+        <div class="meta">
+          <span>05 Janvier — 06 Février 2026</span>
+          <span class="place"><i class="fas fa-map-marker-alt"></i> Nouvelle Société d'Ascenseurs</span>
+        </div>
+        <ul>
+          <li><strong>Projet :</strong> Création d'un site de gestion de devis, clients et dashboard pour NSA</li>
+          <li><strong>Rôle :</strong> Conception complète du site et mise en place de la gestion des devis</li>
+          <li><strong>Technologies :</strong> PHP, HTML, CSS, MySQL</li>
+          <li><strong>Compétences acquises :</strong> Autonomie, organisation, précision et solutions pratiques</li>
+        </ul>
+      </div>
+
+      <div class="cv-item">
+        <h3>Projet IMMOSYNC — Gestion de travaux immobiliers</h3>
+        <div class="meta">
+          <span>Septembre 2025 — Mars 2026</span>
+          <span class="place"><i class="fas fa-users"></i> Projet de groupe — BTS SIO</span>
+        </div>
+        <ul>
+          <li><strong>Contexte :</strong> Solution pour digitaliser la gestion des travaux d'une société de syndic</li>
+          <li><strong>Fonctionnalités :</strong> Gestion des chantiers, devis, documentation, tableau de bord</li>
+          <li><strong>Rôle :</strong> Interface JavaFX/SceneBuilder, logique métier, schéma BDD, tests</li>
+          <li><strong>Technologies :</strong> Java, JavaFX, PHP, Symfony, MySQL, GitHub, Docker</li>
+        </ul>
+      </div>
+
+      <div class="cv-item">
+        <h3>Création d'un site web — SNT</h3>
+        <div class="meta">
+          <span>2021 — 2022</span>
+          <span class="place"><i class="fas fa-school"></i> Projet scolaire</span>
+        </div>
+        <ul>
+          <li><strong>Projet :</strong> Création d'un site de bijoux (montres, bracelets…)</li>
+          <li><strong>Technologies :</strong> JSFiddle</li>
+          <li><strong>Compétences :</strong> Gestion de projet, travail en équipe, communication</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- COMPÉTENCES -->
+    <div class="cv-section reveal" id="skills-section">
+      <h2><i class="fas fa-code"></i> Compétences Techniques</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Compétences Informatiques</h4>
+          <div class="skill">
+            <div class="skill-name"><span>HTML, CSS, JavaScript</span><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-level" data-width="85"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-name"><span>Python &amp; SQL</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-level" data-width="80"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-name"><span>POO Java &amp; PHP</span><span>75%</span></div>
+            <div class="skill-bar"><div class="skill-level" data-width="75"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-name"><span>Suite Office</span><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-level" data-width="90"></div></div>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Compétences Personnelles</h4>
+          <div class="skill">
+            <div class="skill-name"><span>Autonomie</span><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-level" data-width="90"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-name"><span>Travail en équipe</span><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-level" data-width="85"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-name"><span>Créativité</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-level" data-width="80"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-name"><span>Gestion de projet</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-level" data-width="80"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LANGUES -->
+    <div class="cv-section reveal">
+      <h2><i class="fas fa-globe"></i> Langues</h2>
+      <div class="lang-grid">
+        <div class="lang-item">
+          <h4>Français</h4>
+          <span>Langue maternelle</span>
+          <div class="skill-bar"><div class="skill-level" data-width="100"></div></div>
+        </div>
+        <div class="lang-item">
+          <h4>Anglais</h4>
+          <span>Niveau B1</span>
+          <div class="skill-bar"><div class="skill-level" data-width="60"></div></div>
+        </div>
+        <div class="lang-item">
+          <h4>Espagnol</h4>
+          <span>Niveau B2</span>
+          <div class="skill-bar"><div class="skill-level" data-width="70"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTRES D'INTÉRÊT -->
+    <div class="cv-section reveal">
+      <h2><i class="fas fa-heart"></i> Centres d'Intérêt</h2>
+      <div class="interests">
+        <span class="interest">Sécurité informatique</span>
+        <span class="interest">Tir à l'arc</span>
+        <span class="interest">Danse</span>
+        <span class="interest">Fraudes informatiques</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 Assant Eden — Portfolio BTS SIO</p>
+</footer>
+
+<script>
+/* THEME */
+const html = document.documentElement;
+const themeBtn = document.getElementById('theme-btn');
+const saved = localStorage.getItem('eden-theme') || 'light';
+html.setAttribute('data-theme', saved);
+themeBtn.innerHTML = saved === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+themeBtn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('eden-theme', next);
+  themeBtn.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  initParticles();
+});
+
+/* BURGER */
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('nav-links');
+burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+/* REVEAL */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* SKILL BARS ANIMATION */
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-level').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.cv-section, .lang-item').forEach(el => barObs.observe(el));
+
+/* PARTICLES */
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [], animId;
+const mouse = { x:-9999, y:-9999 };
+function initParticles() {
+  cancelAnimationFrame(animId);
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  particles = [];
+  const n = Math.min(60, Math.floor(window.innerWidth / 18));
+  for (let i = 0; i < n; i++) particles.push({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, vx:(Math.random()-.5)*.5, vy:(Math.random()-.5)*.5, r:Math.random()*2+.8 });
+  loop();
+}
+function loop() {
+  animId = requestAnimationFrame(loop);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p => {
+    const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<100){const f=(100-d)/100*.7;p.vx+=dx/d*f;p.vy+=dy/d*f;}
+    p.vx*=.99;p.vy*=.99;p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
+    if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(255,105,180,.32)';ctx.fill();
+  });
+  for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+    const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<140){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(255,105,180,${(1-d/140)*.11})`;ctx.lineWidth=.7;ctx.stroke();}
+  }
+}
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+window.addEventListener('resize',initParticles);
+initParticles();
+</script>
 </body>
 </html>
