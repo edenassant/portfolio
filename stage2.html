@@ -1,189 +1,470 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stage 2 - Gestion de Devis NSA</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage NSA — Eden Assant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --accent:#ff69b4; --accent2:#c94080;
+      --bg:#fff9fa; --bg2:#fff0f5; --surface:#fff;
+      --text:#2d1a22; --text2:#7a4f60;
+      --border:rgba(255,105,180,.18); --shadow:0 4px 24px rgba(255,105,180,.10);
+      --radius:14px; --nav-bg:rgba(255,249,250,.9);
+    }
+    [data-theme="dark"] {
+      --bg:#1a0a0f; --bg2:#22101a; --surface:#2d1520;
+      --text:#f5e6ef; --text2:#c4a0b0;
+      --border:rgba(255,105,180,.18); --shadow:0 4px 24px rgba(255,105,180,.13);
+      --nav-bg:rgba(26,10,15,.9);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .35s,color .35s}
+    #particles-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-    <link rel="stylesheet" href="css/style.css">
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.85rem 5%;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-back{display:inline-flex;align-items:center;gap:.5rem;color:var(--text2);text-decoration:none;font-size:.875rem;font-weight:600;padding:.38rem .85rem;border-radius:8px;transition:all .2s}
+    .nav-back:hover{color:var(--accent);background:rgba(255,105,180,.1)}
+    .nav-links{display:flex;list-style:none;gap:.15rem}
+    .nav-links a{color:var(--text2);text-decoration:none;padding:.36rem .8rem;border-radius:8px;font-size:.82rem;transition:all .2s}
+    .nav-links a:hover,.nav-links a.active{background:rgba(255,105,180,.12);color:var(--accent)}
+    .nav-right{display:flex;align-items:center;gap:.5rem}
+    .theme-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text2);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .theme-btn:hover{color:var(--accent);border-color:var(--accent)}
 
-    <style>
+    main{position:relative;z-index:1}
+    .container{max-width:1000px;margin:0 auto;padding:0 5%}
+    .section{padding:5rem 5%;position:relative;z-index:1}
+    .section.alt{background:var(--bg2)}
+    .section-label{font-size:.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
+    .section-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.5rem}
+    .section-title span{color:var(--accent)}
+    .section-desc{color:var(--text2);font-size:.92rem;margin-bottom:2rem}
 
-        body{
-            font-family: Arial;
-            background: rgb(194, 92, 162);
-        }
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.25rem;padding:7rem 5% 4rem}
+    .hero-logo{width:90px;height:90px;border-radius:20px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:2.5rem;box-shadow:0 8px 30px rgba(255,105,180,.35)}
+    .hero-tag{display:inline-flex;align-items:center;gap:.45rem;padding:.28rem .9rem;background:rgba(255,105,180,.1);border:1px solid rgba(255,105,180,.28);border-radius:999px;font-size:.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+    .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-.04em}
+    .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{color:var(--text2);font-size:1rem;max-width:560px;line-height:1.75}
+    .hero-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+    .chip{padding:.3rem .85rem;background:var(--surface);border:1px solid var(--border);border-radius:999px;font-size:.8rem;color:var(--text2)}
+    .chip.accent{background:rgba(255,105,180,.1);border-color:rgba(255,105,180,.3);color:var(--accent);font-weight:600}
 
-        .stage-container{
-            max-width:1000px;
-            margin:120px auto;
-            background: #c699cb;
-            padding:40px;
-            border-radius:10px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.1);
-        }
+    .info-table{width:100%;border-collapse:collapse}
+    .info-table tr{border-bottom:1px solid var(--border)}
+    .info-table tr:last-child{border-bottom:none}
+    .info-table td{padding:.85rem 1rem;font-size:.9rem}
+    .info-table td:first-child{font-weight:700;color:var(--text2);width:40%;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+    .info-table a{color:var(--accent);text-decoration:none}
+    .info-table a:hover{text-decoration:underline}
 
-        .stage-container h1{
-            text-align:center;
-            margin-bottom:20px;
-        }
+    .block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 2rem;margin-bottom:1.25rem;box-shadow:var(--shadow);border-left:3px solid var(--accent);transition:box-shadow .25s}
+    .block:hover{box-shadow:0 8px 28px rgba(255,105,180,.14)}
+    .block h4{font-size:.95rem;font-weight:700;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+    .block h4 i{color:var(--accent);font-size:.85rem}
+    .block p,.block li{color:var(--text2);font-size:.88rem;line-height:1.75}
+    .block ul{padding-left:1.1rem;display:flex;flex-direction:column;gap:.3rem}
 
-        .stage-container p{
-            text-align:center;
-            margin-bottom:40px;
-        }
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);margin-bottom:1.5rem}
 
-        .slider{
-            position:relative;
-            max-width:800px;
-            margin:auto;
-        }
+    .swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .swot-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);transition:all .25s}
+    .swot-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(255,105,180,.14)}
+    .swot-card-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+    .swot-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+    .swot-icon.green{background:rgba(34,197,94,.12);color:#16a34a}
+    .swot-icon.red{background:rgba(239,68,68,.12);color:#dc2626}
+    .swot-icon.blue{background:rgba(99,102,241,.12);color:#4f46e5}
+    .swot-icon.amber{background:rgba(245,158,11,.12);color:#d97706}
+    .swot-card h4{font-size:.92rem;font-weight:800}
+    .swot-card ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:.4rem}
+    .swot-card li{font-size:.85rem;color:var(--text2);display:flex;align-items:flex-start;gap:.5rem;line-height:1.55}
+    .swot-card li::before{content:'•';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:.05rem}
+    .swot-card.forces{border-top:3px solid #22c55e}
+    .swot-card.faiblesses{border-top:3px solid #ef4444}
+    .swot-card.opportunites{border-top:3px solid #6366f1}
+    .swot-card.menaces{border-top:3px solid #f59e0b}
 
-        .slide{
-            display:none;
-        }
+    .rse-block{background:linear-gradient(135deg,rgba(255,105,180,.07),rgba(201,64,128,.05));border:1px solid rgba(255,105,180,.2);border-radius:var(--radius);padding:1.5rem 2rem;margin-top:1.5rem}
+    .rse-block h4{font-size:.95rem;font-weight:700;margin-bottom:.85rem;color:var(--accent)}
+    .rse-block ul{padding-left:1.1rem;display:flex;flex-direction:column;gap:.5rem}
+    .rse-block li{font-size:.88rem;color:var(--text2);line-height:1.7}
 
-        .slide img{
-            width:100%;
-            border-radius:10px;
-        }
+    .gallery-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .gallery-header{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .gallery-header h4{font-size:.95rem;font-weight:700;display:flex;align-items:center;gap:.5rem}
+    .gallery-header h4 i{color:var(--accent)}
+    .gallery-counter{font-size:.8rem;color:var(--text2)}
+    .gallery-img-wrap{position:relative;background:var(--bg2);height:400px;overflow:hidden;cursor:zoom-in}
+    .gallery-img-wrap img{width:100%;height:100%;object-fit:contain;transition:opacity .3s;display:none}
+    .gallery-img-wrap img.active{display:block}
+    .gallery-nav{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-top:1px solid var(--border)}
+    .gallery-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--bg);color:var(--text2);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .gallery-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+    .gallery-btn:disabled{opacity:.35;cursor:not-allowed}
+    .gallery-dots{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;max-width:400px}
+    .gallery-dot{width:7px;height:7px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .2s}
+    .gallery-dot.active{background:var(--accent);transform:scale(1.3)}
 
-        .prev, .next{
-            position:absolute;
-            top:50%;
-            transform:translateY(-50%);
-            background:rgba(0,0,0,0.6);
-            color:white;
-            border:none;
-            padding:12px 18px;
-            cursor:pointer;
-            font-size:20px;
-            border-radius:50%;
-        }
+    .lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+    .lightbox.open{opacity:1;pointer-events:all}
+    .lightbox img{max-width:92vw;max-height:88vh;border-radius:8px;object-fit:contain}
+    .lightbox-close{position:absolute;top:1.2rem;right:1.5rem;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .lightbox-close:hover{background:rgba(255,105,180,.4);border-color:var(--accent)}
 
-        .prev{
-            left:10px;
-        }
+    footer{text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--text2);font-size:.83rem;position:relative;z-index:1}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
 
-        .next{
-            right:10px;
-        }
-
-    </style>
+    @media(max-width:768px){.nav-links{display:none}.swot-grid{grid-template-columns:1fr}.gallery-img-wrap{height:240px}}
+  </style>
 </head>
-
 <body>
+<canvas id="particles-canvas"></canvas>
 
-<div class="stage-container">
+<nav>
+  <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Portfolio</a>
+  <ul class="nav-links">
+    <li><a href="#identite">Identité</a></li>
+    <li><a href="#presentation">Présentation</a></li>
+    <li><a href="#swot">SWOT</a></li>
+    <li><a href="#stage">Mon Stage</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="theme-btn"><i class="fas fa-moon"></i></button>
+  </div>
+</nav>
 
-    <h1>Stage 2 - Site de gestion de devis</h1>
+<main>
 
-    <p>
-        Lors de mon second stage chez <b>NSA</b>, j’ai développé un site web permettant de générer et gérer des devis.
-        Le site permet également d’ajouter des clients, des photos et de centraliser les informations de l’entreprise.
-        Ce projet a remplacé un système manuel utilisé auparavant.
-    </p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logo">🛗</div>
+  <div class="hero-tag">Entreprise d'accueil · Stage 2026</div>
+  <h1><span>NSA</span></h1>
+  <p class="hero-sub">Nouvelle Société d'Ascenseurs — réseau national d'entreprises spécialisées dans la maintenance, la modernisation et l'installation d'ascenseurs.</p>
+  <div class="hero-chips">
+    <span class="chip accent">NSA</span>
+    <span class="chip accent">Ascenseurs</span>
+    <span class="chip">France</span>
+    <span class="chip">Stage Jan–Fév 2026</span>
+  </div>
+</section>
 
-    <div class="slider">
+<!-- IDENTITÉ -->
+<section id="identite" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">01 — Identité de l'entreprise</div>
+      <h2 class="section-title">Dénomination, adresse &amp; <span>forme juridique</span></h2>
+    </div>
+    <div class="card reveal">
+      <table class="info-table">
+        <tr><td>Dénomination</td><td>NSA — Nouvelle Société d'Ascenseurs</td></tr>
+        <tr><td>Forme juridique</td><td><!-- À compléter --></td></tr>
+        <tr><td>Adresse</td><td><!-- À compléter --></td></tr>
+        <tr><td>Secteur</td><td>Maintenance, modernisation et installation d'ascenseurs</td></tr>
+        <tr><td>Site web</td><td><!-- À compléter --></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
 
-        <div class="slide">
-            <img src="images/nsa1.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa2.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa3.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa4.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa5.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa6.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa7.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa8.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa9.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa10.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa11.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa12.png">
-        </div>
-        <div class="slide">
-            <img src="images/nsa13.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa14.png">
-        </div>
-
-        <div class="slide">
-            <img src="images/nsa15.png">
-        </div>
-        <div class="slide">
-            <img src="images/nsa16.png">
-        </div>
-
-
-
-
-
-        <button class="prev" onclick="changeSlide(-1)">❮</button>
-        <button class="next" onclick="changeSlide(1)">❯</button>
-
+<!-- PRÉSENTATION -->
+<section id="presentation" class="section alt">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">02 — Présentation de l'entreprise</div>
+      <h2 class="section-title">NSA — <span>Nouvelle Société d'Ascenseurs</span></h2>
+      <p class="section-desc">Informations sur l'entreprise, son activité et son contexte.</p>
     </div>
 
+    <div class="block reveal">
+      <h4><i class="fas fa-industry"></i> Secteur d'activité</h4>
+      <p>NSA est un réseau national d'entreprises spécialisées dans la maintenance, la modernisation et l'installation d'ascenseurs. L'entreprise intervient sur des ascenseurs multi-marques et propose des contrats de maintenance adaptés aux besoins des clients.</p>
+    </div>
+
+    <div class="block reveal">
+      <h4><i class="fas fa-users"></i> Taille et effectif</h4>
+      <p><!-- À compléter --></p>
+    </div>
+
+    <div class="block reveal">
+      <h4><i class="fas fa-history"></i> Historique de l'entreprise</h4>
+      <p><!-- À compléter --></p>
+    </div>
+
+    <div class="block reveal">
+      <h4><i class="fas fa-leaf"></i> Responsabilité Sociétale (RSE)</h4>
+      <ul>
+        <li>Modernisation des ascenseurs pour améliorer leur efficacité énergétique</li>
+        <li>Formation continue des techniciens et développement des compétences</li>
+        <li>Contribution à l'accessibilité des bâtiments pour tous les usagers</li>
+      </ul>
+    </div>
+
+    <div class="block reveal">
+      <h4><i class="fas fa-chart-line"></i> Orientation stratégique</h4>
+      <p><!-- À compléter --></p>
+    </div>
+
+    <div class="block reveal">
+      <h4><i class="fas fa-shield-alt"></i> Réglementation</h4>
+      <p><!-- À compléter --></p>
+    </div>
+  </div>
+</section>
+
+<!-- SWOT -->
+<section id="swot" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">03 — Analyse SWOT</div>
+      <h2 class="section-title">Forces, Faiblesses, <span>Opportunités, Menaces</span></h2>
+      <p class="section-desc">Analyse stratégique de NSA — Nouvelle Société d'Ascenseurs.</p>
+    </div>
+    <div class="swot-grid reveal">
+      <div class="swot-card forces">
+        <div class="swot-card-header">
+          <div class="swot-icon green"><i class="fas fa-check"></i></div>
+          <h4>Forces</h4>
+        </div>
+        <ul>
+          <li>Réseau national d'entreprises spécialisées dans les ascenseurs</li>
+          <li>Expertise en maintenance, modernisation et installation</li>
+          <li>Capacité à intervenir sur des ascenseurs multi-marques</li>
+        </ul>
+      </div>
+      <div class="swot-card faiblesses">
+        <div class="swot-card-header">
+          <div class="swot-icon red"><i class="fas fa-times"></i></div>
+          <h4>Faiblesses</h4>
+        </div>
+        <ul>
+          <li>Moins de notoriété que les leaders mondiaux du secteur</li>
+          <li>Ressources financières inférieures aux grands groupes</li>
+          <li>Dépendance à certains fournisseurs pour les pièces détachées</li>
+        </ul>
+      </div>
+      <div class="swot-card opportunites">
+        <div class="swot-card-header">
+          <div class="swot-icon blue"><i class="fas fa-lightbulb"></i></div>
+          <h4>Opportunités</h4>
+        </div>
+        <ul>
+          <li>Vieillissement du parc d'ascenseurs nécessitant des rénovations</li>
+          <li>Renforcement des normes de sécurité et de modernisation</li>
+          <li>Développement des bâtiments intelligents et connectés</li>
+        </ul>
+      </div>
+      <div class="swot-card menaces">
+        <div class="swot-card-header">
+          <div class="swot-icon amber"><i class="fas fa-exclamation-triangle"></i></div>
+          <h4>Menaces</h4>
+        </div>
+        <ul>
+          <li>Concurrence des grands groupes (Otis, Kone, Schindler)</li>
+          <li>Pression sur les prix des contrats de maintenance</li>
+          <li>Pénurie de techniciens qualifiés dans le secteur</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rse-block reveal">
+      <h4>Engagement RSE</h4>
+      <ul>
+        <li><strong>Environnement :</strong> Modernisation des ascenseurs pour améliorer leur efficacité énergétique et réduire l'impact environnemental.</li>
+        <li><strong>Social :</strong> Formation continue des techniciens, sécurité au travail et développement des compétences.</li>
+        <li><strong>Sociétal :</strong> Contribution à l'accessibilité des bâtiments et à la mobilité des usagers.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MON STAGE -->
+<section id="stage" class="section alt">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">04 — Mon Stage</div>
+      <h2 class="section-title">Gestion de <span>Devis NSA</span></h2>
+      <p class="section-desc">05 Janvier — 06 Février 2026</p>
+    </div>
+
+    <div class="block reveal">
+      <h4><i class="fas fa-bullseye"></i> Mission</h4>
+      <p>Lors de mon second stage chez NSA, j'ai développé un site web permettant de générer et gérer des devis. Le site permet également d'ajouter des clients, des photos et de centraliser les informations de l'entreprise. Ce projet a remplacé un système manuel utilisé auparavant.</p>
+    </div>
+
+    <div class="block reveal">
+      <h4><i class="fas fa-tasks"></i> Tâches réalisées</h4>
+      <ul>
+        <li>Conception complète du site de gestion de devis</li>
+        <li>Système de génération et gestion des devis</li>
+        <li>Ajout et gestion des clients</li>
+        <li>Upload et gestion des photos</li>
+        <li>Dashboard de suivi</li>
+        <li>Connexion à la base de données MySQL</li>
+      </ul>
+    </div>
+
+    <div class="block reveal">
+      <h4><i class="fas fa-code"></i> Technologies utilisées</h4>
+      <ul>
+        <li>PHP, HTML, CSS</li>
+        <li>MySQL</li>
+      </ul>
+    </div>
+
+    <div class="block reveal">
+      <h4><i class="fas fa-star"></i> Compétences acquises</h4>
+      <p>Autonomie, organisation, précision et capacité à créer des solutions pratiques pour une entreprise.</p>
+    </div>
+
+    <!-- GALERIE -->
+    <div class="gallery-wrap reveal" style="margin-top:2rem">
+      <div class="gallery-header">
+        <h4><i class="fas fa-images"></i> Captures du projet</h4>
+        <span class="gallery-counter" id="counter-s2">1 / 16</span>
+      </div>
+      <div class="gallery-img-wrap" onclick="openLightbox(s2Images, s2Index)">
+        <img src="images/nsa1.png"  alt="NSA 1"  class="active">
+        <img src="images/nsa2.png"  alt="NSA 2">
+        <img src="images/nsa3.png"  alt="NSA 3">
+        <img src="images/nsa4.png"  alt="NSA 4">
+        <img src="images/nsa5.png"  alt="NSA 5">
+        <img src="images/nsa6.png"  alt="NSA 6">
+        <img src="images/nsa7.png"  alt="NSA 7">
+        <img src="images/nsa8.png"  alt="NSA 8">
+        <img src="images/nsa9.png"  alt="NSA 9">
+        <img src="images/nsa10.png" alt="NSA 10">
+        <img src="images/nsa11.png" alt="NSA 11">
+        <img src="images/nsa12.png" alt="NSA 12">
+        <img src="images/nsa13.png" alt="NSA 13">
+        <img src="images/nsa14.png" alt="NSA 14">
+        <img src="images/nsa15.png" alt="NSA 15">
+        <img src="images/nsa16.png" alt="NSA 16">
+      </div>
+      <div class="gallery-nav">
+        <button class="gallery-btn" id="prev-s2" onclick="changeGallery(-1)" disabled><i class="fas fa-chevron-left"></i></button>
+        <div class="gallery-dots" id="dots-s2"></div>
+        <button class="gallery-btn" id="next-s2" onclick="changeGallery(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BILAN -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">05 — Bilan</div>
+      <h2 class="section-title">Ce que j'ai <span>retenu</span></h2>
+    </div>
+    <div class="block reveal">
+      <h4><i class="fas fa-comment"></i> Bilan personnel</h4>
+      <p><!-- À compléter : tes impressions, ce que tu as appris, les difficultés rencontrées --></p>
+    </div>
+    <div class="block reveal">
+      <h4><i class="fas fa-chart-bar"></i> Compétences du référentiel BTS validées</h4>
+      <p><!-- À compléter --></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Assant Eden — Portfolio BTS SIO</p>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
-
-    let slideIndex = 1;
-    showSlides(slideIndex);
-
-    function changeSlide(n){
-        showSlides(slideIndex += n);
+const html=document.documentElement,themeBtn=document.getElementById('theme-btn');
+const saved=localStorage.getItem('eden-theme')||'light';
+html.setAttribute('data-theme',saved);
+themeBtn.innerHTML=saved==='dark'?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';
+themeBtn.addEventListener('click',()=>{
+  const next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);localStorage.setItem('eden-theme',next);
+  themeBtn.innerHTML=next==='dark'?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';
+  initParticles();
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.offsetTop-68,behavior:'smooth'});}});
+});
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY+120;
+  document.querySelectorAll('section[id]').forEach(sec=>{
+    if(y>=sec.offsetTop&&y<sec.offsetTop+sec.offsetHeight){
+      document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+      const lnk=document.querySelector(`.nav-links a[href="#${sec.id}"]`);
+      if(lnk)lnk.classList.add('active');
     }
+  });
+});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-    function showSlides(n){
+const s2Images=['images/nsa1.png','images/nsa2.png','images/nsa3.png','images/nsa4.png','images/nsa5.png','images/nsa6.png','images/nsa7.png','images/nsa8.png','images/nsa9.png','images/nsa10.png','images/nsa11.png','images/nsa12.png','images/nsa13.png','images/nsa14.png','images/nsa15.png','images/nsa16.png'];
+let s2Index=0;
+function initDots(){
+  const c=document.getElementById('dots-s2');c.innerHTML='';
+  s2Images.forEach((_,i)=>{const d=document.createElement('div');d.className='gallery-dot'+(i===0?' active':'');d.onclick=()=>goTo(i);c.appendChild(d);});
+}
+function updateDots(idx){document.querySelectorAll('#dots-s2 .gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));}
+function changeGallery(dir){
+  const imgs=document.querySelectorAll('.gallery-img-wrap img');
+  imgs[s2Index].classList.remove('active');
+  s2Index=Math.max(0,Math.min(s2Images.length-1,s2Index+dir));
+  imgs[s2Index].classList.add('active');
+  document.getElementById('counter-s2').textContent=`${s2Index+1} / ${s2Images.length}`;
+  document.getElementById('prev-s2').disabled=s2Index===0;
+  document.getElementById('next-s2').disabled=s2Index===s2Images.length-1;
+  updateDots(s2Index);
+}
+function goTo(target){changeGallery(target-s2Index);}
+initDots();
 
-        let slides = document.getElementsByClassName("slide");
+const lightbox=document.getElementById('lightbox'),lbImg=document.getElementById('lightbox-img');
+function openLightbox(imgs,idx){lbImg.src=imgs[idx];lightbox.classList.add('open');document.body.style.overflow='hidden';}
+function closeLightbox(){lightbox.classList.remove('open');document.body.style.overflow='';}
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
-        if(n > slides.length){slideIndex = 1}
-        if(n < 1){slideIndex = slides.length}
-
-        for(let i=0;i<slides.length;i++){
-            slides[i].style.display="none";
-        }
-
-        slides[slideIndex-1].style.display="block";
-
-    }
-
+const canvas=document.getElementById('particles-canvas'),ctx=canvas.getContext('2d');
+let particles=[],animId;const mouse={x:-9999,y:-9999};
+function initParticles(){
+  cancelAnimationFrame(animId);canvas.width=window.innerWidth;canvas.height=window.innerHeight;particles=[];
+  const n=Math.min(60,Math.floor(window.innerWidth/18));
+  for(let i=0;i<n;i++)particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,r:Math.random()*2+.8});
+  loop();
+}
+function loop(){
+  animId=requestAnimationFrame(loop);ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<100){const f=(100-d)/100*.7;p.vx+=dx/d*f;p.vy+=dy/d*f;}
+    p.vx*=.99;p.vy*=.99;p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
+    if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(255,105,180,.32)';ctx.fill();
+  });
+  for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
+    const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<140){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(255,105,180,${(1-d/140)*.11})`;ctx.lineWidth=.7;ctx.stroke();}
+  }
+}
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+window.addEventListener('resize',initParticles);
+initParticles();
 </script>
-
 </body>
 </html>
