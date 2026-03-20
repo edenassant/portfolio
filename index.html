@@ -813,7 +813,7 @@
             <td>Tableau de synthèse</td>
             <td>Détails du tableau de synthèse</td>
             <td>
-              <button class="download-btn" onclick="downloadFile('images/tds1.jpg.png','Tableau.jpg')">
+              <button class="download-btn" onclick="downloadFile('images/tds2.jpg.png','Tableau.jpg')">
                 <i class="fas fa-download"></i> Télécharger
               </button>
             </td>
@@ -1155,9 +1155,18 @@ initParticles();
 
 /* ===== DOWNLOAD ===== */
 function downloadFile(path, name) {
-  const a = document.createElement('a');
-  a.href = path; a.download = name || path.split('/').pop(); a.target = '_blank';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  fetch(path)
+    .then(r => r.blob())
+    .then(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = name || path.split('/').pop();
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
 }
 </script>
 </body>
